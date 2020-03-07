@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class TravelComponent implements OnInit {
 
   constructor(
-    private service: TravelService,
+    public service: TravelService,
     private fireStore: AngularFirestore,
     private toast: ToastrService) {
 

@@ -1,5 +1,6 @@
 <h1 class="display-4">Travel</h1>
 <form #travelForm="ngForm" (submit)="onSubmit(travelForm)">
+    <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
     <div class="form-group">
         <input name="start" #start="ngModel" [(ngModel)]="service.formData.start" class="form-control" placeholder="Start Datum" required>
         <div *ngIf="start.invalid && start.touched" class="validation-error">This Field is required</div>

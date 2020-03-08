@@ -1,1 +1,20 @@
-<p>travel-list works!</p>
+<table class="table table-hover">
+    <thead>
+        <th>Id</th>
+        <th>Start</th>
+        <th>Ende</th>
+        <th>Customer</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let travel of travelList">
+            <td (click)="onEdit(travel)">{{travel.id}}</td>
+            <td (click)="onEdit(travel)">{{travel.start}}</td>
+            <td (click)="onEdit(travel)">{{travel.end}}</td>
+            <td (click)="onEdit(travel)">{{travel.customer}}</td>
+            <td (click)="onEdit(travel)">{{travel.start}}</td>
+            <td (click)="onDelete(travel.id)"><a class="btn text danger"><i class="fa fa-trash"></i></a></td>
+        </tr>
+    </tbody>
+</table>
+

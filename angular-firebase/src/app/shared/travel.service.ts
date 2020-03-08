@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Travel } from '../interface/travel';
+import { Travel } from '../model/travel';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -7,5 +8,10 @@ import { Travel } from '../interface/travel';
 export class TravelService {
 
   formData: Travel;
-  constructor() { }
+  constructor(private fireStore: AngularFirestore
+  ) { }
+
+  getTravelsFromDb() {
+    return this.fireStore.collection('travels').snapshotChanges();
+  }
 }

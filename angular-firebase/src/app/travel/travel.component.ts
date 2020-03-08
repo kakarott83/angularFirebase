@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TravelService } from '../shared/travel.service';
-import { Travel } from '../interface/travel';
 import { NgForm } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
@@ -38,9 +37,13 @@ export class TravelComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    const data = form.value;
-    this.fireStore.collection('travels').add(data);
-    console.log('test');
+    const data = Object.assign({}, form.value);
+    delete data.id;
+    if (form.value.id === null) {
+      this.fireStore.collection('travels').add(data);
+    } else {
+      this.fireStore.doc('travels/' + form.value.id).update(data);
+    }
     this.resetForm(form);
     this.toast.success('Speichern erfolgreich', 'Reise');
   }

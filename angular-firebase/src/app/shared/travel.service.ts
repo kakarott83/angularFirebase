@@ -14,4 +14,6 @@ export class TravelService {
   getTravelsFromDb() {
     return this.fireStore.collection('travels').snapshotChanges();
   }
+
+  createOrUpdateTravel() {}
 }

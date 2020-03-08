@@ -37,13 +37,7 @@ export class TravelComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    const data = Object.assign({}, form.value);
-    delete data.id;
-    if (form.value.id === null) {
-      this.fireStore.collection('travels').add(data);
-    } else {
-      this.fireStore.doc('travels/' + form.value.id).update(data);
-    }
+    this.service.createOrUpdateTravel(form.value);
     this.resetForm(form);
     this.toast.success('Speichern erfolgreich', 'Reise');
   }

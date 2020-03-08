@@ -38,7 +38,7 @@ export class TravelListComponent implements OnInit {
 
   onDelete(id: string) {
     if (confirm('Bist du sicher?')) {
-      this.fireStore.doc('travels/' + id).delete();
+      this.service.deleteTravel(id);
       this.toaster.warning('Reise entfernt', 'Reise');
     }
   }

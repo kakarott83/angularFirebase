@@ -15,5 +15,17 @@ export class TravelService {
     return this.fireStore.collection('travels').snapshotChanges();
   }
 
-  createOrUpdateTravel() {}
+  createOrUpdateTravel(travel: Travel) {
+    const data = travel;
+    delete data.id;
+    if (travel.id === null) {
+      this.fireStore.collection('travels').add(data);
+    } else {
+      this.fireStore.doc('travels/' + travel.id).update(data);
+    }
+  }
+
+  deleteTravel(id: string) {
+    this.fireStore.doc('travels/' + id).delete();
+  }
 }

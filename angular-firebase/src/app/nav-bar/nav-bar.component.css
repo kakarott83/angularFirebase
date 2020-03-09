@@ -1,0 +1,7 @@
+.nav-item {
+    cursor: pointer;
+}
+
+.nav-item :hover {
+    font-size: large;
+}

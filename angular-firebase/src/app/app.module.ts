@@ -16,12 +16,14 @@ import { environment } from 'src/environments/environment';
 import { TravelComponent } from './travel/travel.component';
 import { TravelListComponent } from './travel-list/travel-list.component';
 import { TravelService } from './shared/travel.service';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TravelComponent,
-    TravelListComponent
+    TravelListComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

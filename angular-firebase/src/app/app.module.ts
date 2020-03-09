@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -29,7 +30,8 @@ import { TravelService } from './shared/travel.service';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AngularFireModule.initializeApp(environment.fireBaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FlexLayoutModule
   ],
   providers: [TravelService],
   bootstrap: [AppComponent]

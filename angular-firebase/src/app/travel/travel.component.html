@@ -2,24 +2,29 @@
 <form #travelForm="ngForm" (submit)="onSubmit(travelForm)">
     <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
     <div class="form-group">
-        <input name="start" #start="ngModel" [(ngModel)]="service.formData.start" class="form-control" placeholder="Start Datum" required>
+        <input name="start" #start="ngModel" [(ngModel)]="service.formData.start" class="form-control"
+            placeholder="Start Datum" required>
         <div *ngIf="start.invalid && start.touched" class="validation-error">This Field is required</div>
     </div>
     <div class="form-group">
-        <input name="end" #start="ngModel" [(ngModel)]="service.formData.end" class="form-control" placeholder="Ende Datum" required>
+        <input name="end" #start="ngModel" [(ngModel)]="service.formData.end" class="form-control"
+            placeholder="Ende Datum" required>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <input name="customer" #start="ngModel" [(ngModel)]="service.formData.customer" class="form-control" placeholder="Kunde">
+            <input name="customer" #start="ngModel" [(ngModel)]="service.formData.customer" class="form-control"
+                placeholder="Kunde">
         </div>
         <div class="form-group col-md-6">
-            <input name="reason" #start="ngModel" [(ngModel)]="service.formData.reason" class="form-control" placeholder="Zweck">
+            <input name="reason" #start="ngModel" [(ngModel)]="service.formData.reason" class="form-control"
+                placeholder="Zweck">
         </div>
     </div>
     <div class="form-group">
-        <input name="userId" #start="ngModel" [(ngModel)]="service.formData.userId" class="form-control" placeholder="User Id">
+        <input name="userId" #start="ngModel" [(ngModel)]="service.formData.userId" class="form-control"
+            placeholder="User Id">
     </div>
     <div class="form-group">
-        <button type="submit" [disabled]="travelForm.invalid"  class="btn btn-lg btn-block btn-info">Speichern</button>
+        <button type="submit" [disabled]="travelForm.invalid" class="btn btn-lg btn-block btn-info">Speichern</button>
     </div>
 </form>

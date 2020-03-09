@@ -18,10 +18,11 @@ export class TravelService {
   createOrUpdateTravel(travel: Travel) {
     const data = travel;
     delete data.id;
-    if (travel.id === null) {
-      this.fireStore.collection('travels').add(data);
-    } else {
+    console.log('hallo', travel.id)
+    if (travel.id !== null) {
       this.fireStore.doc('travels/' + travel.id).update(data);
+    } else {
+      this.fireStore.collection('travels').add(data);
     }
   }
 

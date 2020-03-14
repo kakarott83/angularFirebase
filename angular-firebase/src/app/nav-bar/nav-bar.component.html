@@ -1,13 +1,14 @@
 <nav class="navbar navbar-dark bg-dark">
-    <div>
+  <div>
     <a class="navbar-brand" href="#">
-        <img src="../assets/logo/milan_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      <img src="../assets/logo/milan_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
     </a>
     <span class="nav-item" routerLinkActive href='#' style="margin: 0.5rem; color: white;">Dashboard</span>
-    <span class="nav-item" routerLinkActive href='#' style="margin: 0.5rem; color: white;">Neue Reise</span>
+    <span class="nav-item" routerLink="/travel" routerLinkActive style="margin: 0.5rem; color: white;">Neue Reise</span>
     <span class="nav-item" routerLinkActive href='#' style="margin: 0.5rem; color: white;">Alle Reisen</span>
-    </div>
-   <ul class="nav justify-content-end">
+    <span class="nav-item" routerLink="/settings" routerLinkActive style="margin: 0.5rem; color: white;">Einstellungen</span>
+  </div>
+  <ul class="nav justify-content-end">
     <li class="nav-item">
       <i class="fas fa-sign-in-alt" style="margin: 0.5rem; color:white;" routerLink="/login" routerLinkActive></i>
     </li>
@@ -17,5 +18,5 @@
     <li class="nav-item">
       <i class="fas fa-sign-out-alt" style="margin: 0.5rem; color:white;" routerLink="/logout" routerLinkActive></i>
     </li>
-  </ul> 
-  </nav>
+  </ul>
+</nav>

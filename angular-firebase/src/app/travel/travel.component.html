@@ -1,30 +1,36 @@
-<h1 class="display-4">Travel</h1>
-<form #travelForm="ngForm" (submit)="onSubmit(travelForm)">
-    <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
-    <div class="form-group">
-        <input name="start" #start="ngModel" [(ngModel)]="service.formData.start" class="form-control"
-            placeholder="Start Datum" required>
-        <div *ngIf="start.invalid && start.touched" class="validation-error">This Field is required</div>
-    </div>
-    <div class="form-group">
-        <input name="end" #start="ngModel" [(ngModel)]="service.formData.end" class="form-control"
-            placeholder="Ende Datum" required>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <input name="customer" #start="ngModel" [(ngModel)]="service.formData.customer" class="form-control"
-                placeholder="Kunde">
+<div class="text-center">
+    <h2 class="display-4">Travel</h2>
+    <form class="form-travel" #travelForm="ngForm" (submit)="onSubmit(travelForm)">
+        <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
+        <div class="form-group">
+            <input name="start" #start="ngModel" [(ngModel)]="service.formData.start" class="form-control"
+                placeholder="Start Datum" required>
+            <div *ngIf="start.invalid && start.touched" class="validation-error">This Field is required</div>
         </div>
-        <div class="form-group col-md-6">
-            <input name="reason" #start="ngModel" [(ngModel)]="service.formData.reason" class="form-control"
-                placeholder="Zweck">
+        <div class="form-group">
+            <input name="end" #end="ngModel" [(ngModel)]="service.formData.end" class="form-control"
+                placeholder="Ende Datum" required>
+            <div *ngIf="end.invalid && end.touched" class="validation-error">This Field is required</div>
         </div>
-    </div>
-    <div class="form-group">
-        <input name="userId" #start="ngModel" [(ngModel)]="service.formData.userId" class="form-control"
-            placeholder="User Id">
-    </div>
-    <div class="form-group">
-        <button type="submit" [disabled]="travelForm.invalid" class="btn btn-lg btn-block btn-info">Speichern</button>
-    </div>
-</form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input name="customer" #customer="ngModel" [(ngModel)]="service.formData.customer" class="form-control"
+                    placeholder="Kunde" required>
+                <div *ngIf="customer.invalid && customer.touched" class="validation-error">This Field is required</div>
+            </div>
+            <div class="form-group col-md-6">
+                <input name="reason" #reason="ngModel" [(ngModel)]="service.formData.reason" class="form-control"
+                    placeholder="Zweck" required>
+                <div *ngIf="reason.invalid && reason.touched" class="validation-error">This Field is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input name="userId" #start="ngModel" [(ngModel)]="service.formData.userId" class="form-control"
+                placeholder="User Id">
+        </div>
+        <div class="form-group">
+            <button type="submit" [disabled]="travelForm.invalid"
+                class="btn btn-lg btn-block btn-info">Speichern</button>
+        </div>
+    </form>
+</div>

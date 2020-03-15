@@ -1,16 +1,17 @@
 <div class=container>
-    <form #country class="form-country">
+    <form #countryForm="ngForm" class="form-country" (submit)="onSubmit(countryForm)">
+        <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.countryForm.id">
         <div class="form-label-group">
             <label class="sr-only">Land</label>
-            <input class="form-control" type="text" name="country" id="country" placeholder="Land">
+            <input class="form-control" #name="ngModel" [(ngModel)]="service.countryForm.name" type="text" name="name" id="name" placeholder="Land">
         </div>
         <div class="form-label-group">
             <label class="sr-only">Tagespauschale</label>
-            <input class="form-control" type="text" name="rate" id="rate" placeholder="Tagessatz">
+            <input class="form-control" #rate="ngModel" [(ngModel)]="service.countryForm.rate" type="number" name="rate" id="rate" placeholder="Tagessatz">
         </div>
         <div class="form-label-group">
             <label class="sr-only">An-und Abreise</label>
-            <input class="form-control" type="text" name="rateHalf" id="rateHalf" placeholder="An-und Abreise">
+            <input class="form-control" #rateHalf="ngModel" [(ngModel)]="service.countryForm.rateHalf" type="number" name="rateHalf" id="rateHalf" placeholder="An-und Abreise">
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Speichern</button>
     </form>

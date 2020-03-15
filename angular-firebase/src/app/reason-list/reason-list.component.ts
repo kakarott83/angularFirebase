@@ -17,10 +17,10 @@ export class ReasonListComponent implements OnInit {
     private toaster: ToastrService) { }
 
   ngOnInit() {
-    this.getTravels();
+    this.getReasons();
   }
 
-  getTravels() {
+  getReasons() {
     this.service.getReasonFromDb().subscribe(actionArray => {
       this.reasonList = actionArray.map(item => {
         return {

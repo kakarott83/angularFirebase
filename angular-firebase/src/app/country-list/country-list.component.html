@@ -1,0 +1,20 @@
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <th>Id</th>
+            <th>Land</th>
+            <th>Tagessatz</th>
+            <th>An-Abreise</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let country of countryList">
+                <td (click)="onEdit(country)">{{country.id}}</td>
+                <td (click)="onEdit(country)">{{country.name}}</td>
+                <td (click)="onEdit(country)">{{country.rate}}</td>
+                <td (click)="onEdit(country)">{{country.rateHalf}}</td>
+                <td (click)="onDelete(country.id)"><a class="btn text danger"><i class="fa fa-trash"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

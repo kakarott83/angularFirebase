@@ -26,6 +26,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ReasonComponent } from './reason/reason.component';
 import { CountryComponent } from './country/country.component';
 import { ReasonListComponent } from './reason-list/reason-list.component';
+import { CountryListComponent } from './country-list/country-list.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ReasonListComponent } from './reason-list/reason-list.component';
     SettingsComponent,
     ReasonComponent,
     CountryComponent,
-    ReasonListComponent
+    ReasonListComponent,
+    CountryListComponent
   ],
   imports: [
     BrowserModule,

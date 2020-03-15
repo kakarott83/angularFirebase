@@ -1,17 +1,18 @@
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active">Active</a>
-      <div class="text-center">
-        <app-customer></app-customer>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link">Link</a>
-      <div class="text-center">
-        <app-reason></app-reason>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-    </li>
-  </ul>
+<ngb-tabset [destroyOnHide]="false">
+  <ngb-tab title="Kunden">
+    <ng-template ngbTabContent>
+      <app-customer></app-customer>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Länder">
+    <ng-template ngbTabContent>
+      <app-country></app-country>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Gründe">
+    <ng-template ngbTabContent>
+      <app-reason></app-reason>
+      <app-reason-list></app-reason-list>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TravelService } from '../shared/travel.service';
 import { Travel } from '../model/travel';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,7 +13,6 @@ export class TravelListComponent implements OnInit {
   travelList: Travel[];
   constructor(
     public service: TravelService,
-    private fireStore: AngularFirestore,
     private toaster: ToastrService) { }
 
   ngOnInit() {

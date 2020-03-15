@@ -1,1 +1,10 @@
-<p>reason works!</p>
+<div class=container>
+    <form #reasonForm="ngForm" class="form-reason" (submit)="onSubmit(reasonForm)">
+        <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.reasonForm.id">
+        <div class="form-label-group">
+            <label class="sr-only">Grund</label>
+            <input class="form-control" #reason="ngModel" [(ngModel)]="service.reasonForm.reason" type="text" name="reason" id="reason" placeholder="Grund">
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Speichern</button>
+    </form>
+</div>

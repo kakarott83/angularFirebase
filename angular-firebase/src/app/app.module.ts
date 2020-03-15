@@ -24,6 +24,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { CustomerComponent } from './customer/customer.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ReasonComponent } from './reason/reason.component';
+import { CountryComponent } from './country/country.component';
+import { ReasonListComponent } from './reason-list/reason-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { ReasonComponent } from './reason/reason.component';
     
     CustomerComponent,
     SettingsComponent,
-    ReasonComponent
+    ReasonComponent,
+    CountryComponent,
+    ReasonListComponent
   ],
   imports: [
     BrowserModule,

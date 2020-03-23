@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Travel } from '../model/travel';
+import { Itravel } from '../interface/itravel';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class TravelService {
 
-  formData: Travel;
+  formData: Itravel;
   constructor(private fireStore: AngularFirestore
   ) { }
 
@@ -15,7 +15,7 @@ export class TravelService {
     return this.fireStore.collection('travels').snapshotChanges();
   }
 
-  createOrUpdateTravel(travel: Travel) {
+  createOrUpdateTravel(travel: Itravel) {
     const data = travel;
     delete data.id;
     if (travel.id !== null) {

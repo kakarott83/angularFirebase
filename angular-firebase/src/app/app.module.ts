@@ -27,6 +27,12 @@ import { ReasonComponent } from './reason/reason.component';
 import { CountryComponent } from './country/country.component';
 import { ReasonListComponent } from './reason-list/reason-list.component';
 import { CountryListComponent } from './country-list/country-list.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
+
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+
+registerLocaleData(localeDe, 'de-DE');
 
 @NgModule({
   declarations: [
@@ -43,7 +49,8 @@ import { CountryListComponent } from './country-list/country-list.component';
     ReasonComponent,
     CountryComponent,
     ReasonListComponent,
-    CountryListComponent
+    CountryListComponent,
+    CustomerListComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +63,7 @@ import { CountryListComponent } from './country-list/country-list.component';
     FlexLayoutModule,
     NgbModule
   ],
+
   providers: [TravelService],
   bootstrap: [AppComponent]
 })

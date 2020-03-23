@@ -1,0 +1,20 @@
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Ort</th>
+            <th>Land</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customerList">
+                <td (click)="onEdit(customer)">{{customer.id}}</td>
+                <td (click)="onEdit(customer)">{{customer.name}}</td>
+                <td (click)="onEdit(customer)">{{customer.city}}</td>
+                <td (click)="onEdit(customer)">{{customer.country}}</td>
+                <td (click)="onDelete(customer.id)"><a class="btn text danger"><i class="fa fa-trash"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

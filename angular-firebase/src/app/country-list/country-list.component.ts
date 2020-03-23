@@ -21,7 +21,7 @@ export class CountryListComponent implements OnInit {
   }
 
   getCountry() {
-    this.service.getReasonFromDb().subscribe(actionArray => {
+    this.service.getCountryFromDb().subscribe(actionArray => {
       this.countryList = actionArray.map(item => {
         return {
           id: item.payload.doc.id,

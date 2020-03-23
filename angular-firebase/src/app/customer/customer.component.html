@@ -1,17 +1,20 @@
 <div class="container col-md-6">
-    <form #customer class="form-customer">
+    <form #customerForm="ngForm" class="form-customer" (submit)="onSubmit(customerForm)">
+        <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.customerForm.id">
         <div class="form-label-group">
             <label class="sr-only">Kunde</label>
-            <input class="form-control" type="text" name="name" id="name" placeholder="Kunde">
+            <input class="form-control"  type="text" #name="ngModel" [(ngModel)]="service.customerForm.name" name="name" id="name" placeholder="Kunde">
         </div>
         <div class="form-label-group">
             <label class="sr-only">Ort</label>
-            <input class="form-control" type="text" name="city" id="city" placeholder="Ort">
+            <input class="form-control" type="text" #city="ngModel" [(ngModel)]="service.customerForm.city" name="city" id="city" placeholder="Ort">
         </div>
-        <div class="form-label-group">
-            <label class="sr-only">Land</label>
-            <input class="form-control" type="text" name="country" id="country" placeholder="Land">
+        <div class="form-label-group" *ngIf="countryList; let countryList; else loadingSelect;">
+            <select class="form-control" type="text" name="country" id="country" #country="ngModel" [(ngModel)]="service.customerForm.country"  name="country" id="country">
+                <option *ngFor="let item of countryList" [ngValue]="item.name">{{item.name}}</option>
+              </select>
         </div>
+        <ng-template #loadingSelect>Loading Country Data dropdown...</ng-template>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Speichern</button>
     </form>
 </div>

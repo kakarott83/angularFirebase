@@ -18,10 +18,11 @@ export class ReasonService {
   }
 
   createOrUpdateReason(reason: Ireason) {
+    const id = reason.id;
     const data = reason;
     delete data.id;
-    if (reason.id !== null && reason.id !== undefined) {
-      this.fireStore.doc('reason/' + reason.id).update(data);
+    if (id !== null) {
+      this.fireStore.doc('reason/' + id).update(data);
     } else {
       this.fireStore.collection('reason').add(data);
     }

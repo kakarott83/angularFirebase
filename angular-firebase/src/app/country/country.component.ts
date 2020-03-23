@@ -11,7 +11,7 @@ import { CountryService } from '../shared/country.service';
 export class CountryComponent implements OnInit {
 
   constructor(
-    private service: CountryService,
+    public service: CountryService,
     private toast: ToastrService
   ) { }
 
@@ -27,7 +27,7 @@ export class CountryComponent implements OnInit {
       id: null,
       name: '',
       rate: 0,
-      ratingHalf: 0
+      rateHalf: 0
     };
   }
 

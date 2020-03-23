@@ -13,15 +13,16 @@ export class CountryService {
     private fireStore: AngularFirestore
   ) { }
 
-  getReasonFromDb() {
+  getCountryFromDb() {
     return this.fireStore.collection('country').snapshotChanges();
   }
 
   createOrUpdateCountry(country: Icountry) {
+    const id = country.id
     const data = country;
     delete data.id;
-    if (country.id !== null && country.id !== undefined) {
-      this.fireStore.doc('country/' + country.id).update(data);
+    if (id !== null) {
+      this.fireStore.doc('country/' + id).update(data);
     } else {
       this.fireStore.collection('country').add(data);
     }

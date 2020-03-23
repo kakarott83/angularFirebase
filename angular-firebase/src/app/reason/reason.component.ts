@@ -12,7 +12,7 @@ import { Ireason } from '../interface/ireason';
 export class ReasonComponent implements OnInit {
 
   constructor(
-    private service: ReasonService,
+    public service: ReasonService,
     private toast: ToastrService
   ) { }
 

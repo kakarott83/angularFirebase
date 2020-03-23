@@ -2,16 +2,42 @@
     <h2 class="display-4">Travel</h2>
     <form class="form-travel" #travelForm="ngForm" (submit)="onSubmit(travelForm)">
         <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
-        <div class="form-group">
-            <input name="start" #start="ngModel" [(ngModel)]="service.formData.start" class="form-control"
-                placeholder="Start Datum" required>
-            <div *ngIf="start.invalid && start.touched" class="validation-error">This Field is required</div>
+        <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+        </ngb-datepicker>
+        
+        <ng-template #t let-date let-focused="focused">
+          <span class="custom-day"
+                [class.focused]="focused"
+                [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)"
+                (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+          </span>
+        </ng-template>
+        <div class="container">
+            <div class="row">
+                <div class="inputCalendar">
+                    <input class="form-control col md-6" type="text" name="startDate">
+                </div>
+                <ngb-timepicker 
+                class = col-md-6
+                [(ngModel)]="fromTime"
+                name="startTime"
+                [seconds]="false"
+                [hourStep]="hourStep" 
+                [minuteStep]="minuteStep"></ngb-timepicker>
+            </div>
         </div>
-        <div class="form-group">
-            <input name="end" #end="ngModel" [(ngModel)]="service.formData.end" class="form-control"
-                placeholder="Ende Datum" required>
-            <div *ngIf="end.invalid && end.touched" class="validation-error">This Field is required</div>
-        </div>
+        
+        <div>Ende {{toDate | json}}</div>
+        
+        <ngb-timepicker 
+            [(ngModel)]="toTime"
+            name="endTime"
+            [seconds]="false"
+            [hourStep]="hourStep" 
+            [minuteStep]="minuteStep"></ngb-timepicker>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <input name="customer" #customer="ngModel" [(ngModel)]="service.formData.customer" class="form-control"

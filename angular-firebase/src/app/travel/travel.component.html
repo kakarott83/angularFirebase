@@ -2,54 +2,59 @@
     <h2 class="display-4">Travel</h2>
     <form class="form-travel" #travelForm="ngForm" (submit)="onSubmit(travelForm)">
         <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
-        <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+        <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
+            outsideDays="hidden">
         </ngb-datepicker>
-        
+
         <ng-template #t let-date let-focused="focused">
-          <span class="custom-day"
-                [class.focused]="focused"
-                [class.range]="isRange(date)"
-                [class.faded]="isHovered(date) || isInside(date)"
-                (mouseenter)="hoveredDate = date"
+            <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
                 (mouseleave)="hoveredDate = null">
-            {{ date.day }}
-          </span>
+                {{ date.day }}
+            </span>
         </ng-template>
-        <div class="container">
-            <div class="row">
-                <div class="inputCalendar">
-                    <input class="form-control col md-6" type="text" name="startDate">
-                </div>
-                <ngb-timepicker 
-                class = col-md-6
-                [(ngModel)]="fromTime"
-                name="startTime"
-                [seconds]="false"
-                [hourStep]="hourStep" 
-                [minuteStep]="minuteStep"></ngb-timepicker>
+        <div>{{fromDate | json}}</div>
+        <div class="row">
+            <div class="form-group col md-10 inputDateForm">
+                <input class="form-control" disabled [ngModel]="startDate | date: 'mediumDate'" name="start">
+            </div>
+            <div class="form-group col md-2 timePickerForm">
+                <ngb-timepicker [(ngModel)]="fromTime" name="startTime" [seconds]="false" [hourStep]="hourStep"
+                    [minuteStep]="minuteStep">
+                </ngb-timepicker>
             </div>
         </div>
-        
-        <div>Ende {{toDate | json}}</div>
-        
-        <ngb-timepicker 
-            [(ngModel)]="toTime"
-            name="endTime"
-            [seconds]="false"
-            [hourStep]="hourStep" 
-            [minuteStep]="minuteStep"></ngb-timepicker>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <input name="customer" #customer="ngModel" [(ngModel)]="service.formData.customer" class="form-control"
-                    placeholder="Kunde" required>
-                <div *ngIf="customer.invalid && customer.touched" class="validation-error">This Field is required</div>
+        <div class="row">
+            <div class="form-group col md-8 inputDateForm">
+                <input class="form-control" disabled [ngModel]="endDate | date: 'mediumDate'" name="end">
             </div>
-            <div class="form-group col-md-6">
-                <input name="reason" #reason="ngModel" [(ngModel)]="service.formData.reason" class="form-control"
-                    placeholder="Zweck" required>
-                <div *ngIf="reason.invalid && reason.touched" class="validation-error">This Field is required</div>
+            <div class="form-group col md-4 timePickerForm">
+                <ngb-timepicker [(ngModel)]="toTime" name="endTime" [seconds]="false" [hourStep]="hourStep"
+                    [minuteStep]="minuteStep">
+                </ngb-timepicker>
             </div>
         </div>
+
+        <div class="form-group">
+            <div class="form-label-group" *ngIf="customerList; let customerList; else loadingSelect;">
+                <select class="form-control" type="text" name="customer" #customer="ngModel"
+                    [(ngModel)]="service.formData.customer" name="customer">
+                    <option *ngFor="let item of customerList" [ngValue]="item.name">{{item.name}}</option>
+                </select>
+            </div>
+            <ng-template #loadingSelect>Loading Customer Data dropdown...</ng-template>
+        </div>
+        <div class="form-group">
+            <div class="form-label-group" *ngIf="reasonList; let reasonList; else loadingSelect;">
+                <select class="form-control" type="text" name="reason" #reason="ngModel"
+                    [(ngModel)]="service.formData.reason" name="reason">
+                    <option *ngFor="let item of reasonList" [ngValue]="item.reason">{{item.reason}}</option>
+                </select>
+            </div>
+            <ng-template #loadingSelect>Loading Reason Data dropdown...</ng-template>
+        </div>
+
+
         <div class="form-group">
             <input name="userId" #start="ngModel" [(ngModel)]="service.formData.userId" class="form-control"
                 placeholder="User Id">

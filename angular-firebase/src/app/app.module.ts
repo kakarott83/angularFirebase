@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,7 +32,7 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 
-registerLocaleData(localeDe, 'de-DE');
+registerLocaleData(localeDe, 'de');
 
 @NgModule({
   declarations: [
@@ -64,7 +64,7 @@ registerLocaleData(localeDe, 'de-DE');
     NgbModule
   ],
 
-  providers: [TravelService],
+  providers: [TravelService, {provide: LOCALE_ID, useValue: 'de'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

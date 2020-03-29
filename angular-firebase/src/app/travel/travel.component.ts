@@ -5,6 +5,14 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
 import { NgbDate, NgbCalendar, NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { from } from 'rxjs';
+import { CustomerService } from '../shared/customer.service';
+import { ReasonService } from '../shared/reason.service';
+import { ICustomer } from '../interface/icustomer';
+import { Ireason } from '../interface/ireason';
+
+import { formatDistance, subDays } from 'date-fns'
+import addDays from 'date-fns/addDays'
 
 
 @Component({
@@ -16,23 +24,34 @@ export class TravelComponent implements OnInit {
 
   hoveredDate: NgbDate | null = null;
   fromDate: NgbDate;
+  startDate;
   toDate: NgbDate | null = null;
+  endDate: Date
   fromTime: NgbTimeStruct = {hour: 13, minute: 30, second: 0};
   toTime: NgbTimeStruct = {hour: 13, minute: 30, second: 0};
   hourStep = 1;
   minuteStep = 15;
+  customerList: ICustomer[];
+  reasonList: Ireason[];
 
   constructor(
     private calendar: NgbCalendar,
+    public customerService: CustomerService,
+    public reasonService: ReasonService,
     public service: TravelService,
     private fireStore: AngularFirestore,
     private toast: ToastrService) {
-      this.fromDate = calendar.getToday();
-      this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+      this.fromDate = calendar.getNext(calendar.getToday(), 'd', -2);
+      this.startDate = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
+      this.toDate = calendar.getNext(calendar.getToday(), 'd', 1);
+      this.endDate = new Date(this.toDate.year, this.toDate.month-1, this.toDate.day);
+
   }
 
   ngOnInit() {
     this.resetForm();
+    this.getCustomerList();
+    this.getReasonList();
   }
 
   resetForm(form?: NgForm) {
@@ -62,11 +81,14 @@ export class TravelComponent implements OnInit {
   onDateSelection(date: NgbDate) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
+      this.startDate = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
     } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
       this.toDate = date;
+      this.endDate = new Date(this.toDate.year, this.toDate.month-1, this.toDate.day);
     } else {
       this.toDate = null;
       this.fromDate = date;
+      this.startDate = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
     }
   }
 
@@ -80,5 +102,27 @@ export class TravelComponent implements OnInit {
 
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || (this.toDate && date.equals(this.toDate)) || this.isInside(date) || this.isHovered(date);
+  }
+
+  getCustomerList() {
+    this.customerService.getCustomerFromDb().subscribe(actionArray => {
+      this.customerList = actionArray.map(item => {
+        return {
+          id: item.payload.doc.id,
+          ...item.payload.doc.data() as ICustomer
+        };
+      });
+    });
+  }
+
+  getReasonList() {
+    this.reasonService.getReasonFromDb().subscribe(actionArray => {
+      this.reasonList = actionArray.map(item => {
+        return {
+          id: item.payload.doc.id,
+          ...item.payload.doc.data() as Ireason
+        }
+      })
+    })
   }
 }

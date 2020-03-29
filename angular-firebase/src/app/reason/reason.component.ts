@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+// import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+// import { Observable } from 'rxjs/Observable';
+// import 'rxjs/add/operator/map';
+
 import { NgForm } from '@angular/forms';
 import { ReasonService } from '../shared/reason.service';
 import { ToastrService } from 'ngx-toastr';
